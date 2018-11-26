@@ -34,6 +34,7 @@ pkginclude_HEADERS += $(swincludedir)/gbfstrongs.h
 pkginclude_HEADERS += $(swincludedir)/gbfwordjs.h
 pkginclude_HEADERS += $(swincludedir)/gbfthml.h
 pkginclude_HEADERS += $(swincludedir)/gbflatex.h
+pkginclude_HEADERS += $(swincludedir)/gbfmarkdown.h
 
 pkginclude_HEADERS += $(swincludedir)/greeklexattribs.h
 pkginclude_HEADERS += $(swincludedir)/hebrewmcim.h
@@ -69,6 +70,7 @@ pkginclude_HEADERS += $(swincludedir)/osiswordjs.h
 pkginclude_HEADERS += $(swincludedir)/osisvariants.h   
 pkginclude_HEADERS += $(swincludedir)/osisxlit.h   
 pkginclude_HEADERS += $(swincludedir)/osislatex.h
+pkginclude_HEADERS += $(swincludedir)/osismarkdown.h
 
 pkginclude_HEADERS += $(swincludedir)/papyriplain.h
 pkginclude_HEADERS += $(swincludedir)/rawcom.h
@@ -135,12 +137,14 @@ pkginclude_HEADERS += $(swincludedir)/thmlstrongs.h
 pkginclude_HEADERS += $(swincludedir)/thmlvariants.h
 pkginclude_HEADERS += $(swincludedir)/thmlwordjs.h
 pkginclude_HEADERS += $(swincludedir)/thmllatex.h
+pkginclude_HEADERS += $(swincludedir)/thmlmarkdown.h
 
 pkginclude_HEADERS += $(swincludedir)/teiplain.h
 pkginclude_HEADERS += $(swincludedir)/teirtf.h
 pkginclude_HEADERS += $(swincludedir)/teixhtml.h
 pkginclude_HEADERS += $(swincludedir)/teihtmlhref.h
 pkginclude_HEADERS += $(swincludedir)/teilatex.h
+pkginclude_HEADERS += $(swincludedir)/teimarkdown.h
 
 pkginclude_HEADERS += $(swincludedir)/treekey.h
 pkginclude_HEADERS += $(swincludedir)/treekeyidx.h

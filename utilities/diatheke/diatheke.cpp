@@ -62,7 +62,7 @@ void printsyntax() {
 
 	fprintf (stderr, "Maximum verses may be any integer value\n");
 	fprintf (stderr, "Valid output_format values are: CGI, GBF, HTML, HTMLHREF, LaTeX, OSIS, RTF,\n");
- 	fprintf (stderr, "  ThML, WEBIF, XHTML, plain, and internal (def)\n");
+ 	fprintf (stderr, "  ThML, WEBIF, XHTML, plain, MarkDown and internal (def)\n");
  	fprintf (stderr, "The option LaTeX will produce a compilable document, but may well require\n");
 	fprintf (stderr, "  tweaking to be usable.\n");
 	fprintf (stderr, "Valid output_encoding values are: Latin1, UTF8 (def), UTF16, HTML, RTF, and SCSU\n");
@@ -222,6 +222,9 @@ int main(int argc, char **argv)
 				}
 				else if (!::stricmp("webif", argv[i])) {
 					outputformat = FMT_WEBIF;
+				}
+				else if (!::stricmp("markdown", argv[i])) {
+					outputformat = FMT_MARKDOWN;
 				}
 				else if (!::stricmp("internal", argv[i])) {
 					outputformat = FMT_INTERNAL;

@@ -260,6 +260,10 @@ void doquery(unsigned long maxverses = -1, unsigned char outputformat = FMT_PLAI
 			*output << ";}{\\f7\\froman\\fcharset2\\fprq2 Symbol;}}";
 		}
 
+		if (outputformat == FMT_MARKDOWN) {
+			*output << target->getRenderHeader();
+			}
+		
 		else if (outputformat == FMT_LATEX) {
 			*output << "\\documentclass{bibletext}\n"
 				   "\\usepackage{sword}\n"

@@ -32,6 +32,8 @@
 #include <thmllatex.h>
 #include <thmlrtf.h>
 #include <thmlwebif.h>
+#include <thmlmarkdown.h>
+
 
 #include <gbfplain.h>
 #include <gbfthml.h>
@@ -42,6 +44,7 @@
 #include <gbflatex.h>
 #include <gbfrtf.h>
 #include <gbfwebif.h>
+#include <gbfmarkdown.h>
 
 #include <osisplain.h>
 #include <osisosis.h>
@@ -50,12 +53,14 @@
 #include <osisxhtml.h>
 #include <osislatex.h>
 #include <osiswebif.h>
+#include <osismarkdown.h>
 
 #include <teiplain.h>
 #include <teirtf.h>
 #include <teihtmlhref.h>
 #include <teixhtml.h>
 #include <teilatex.h>
+#include <teimarkdown.h>
 
 #include "diafiltmgr.h"
 #include "thmlcgi.h"
@@ -321,6 +326,14 @@ void DiathekeFilterMgr::CreateFilters(char markup) {
 			fromgbf   = new GBFXHTML();
 			fromosis  = new OSISXHTML();
 			fromtei   = new TEIXHTML();
+			break;
+
+		case FMT_MARKDOWN:
+			fromplain = NULL;
+			fromthml  = new ThMLMarkDown();
+			fromgbf   = new GBFMarkDown();
+			fromosis  = new OSISMarkDown();
+			fromtei   = new TEIMarkDown();
 			break;
                 }
 
