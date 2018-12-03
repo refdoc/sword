@@ -57,6 +57,11 @@ const char *OSISXHTML::getHeader() const {
 		.inscription {font-variant: small-caps; }\n\
 		.catchWord {font-style: bold; }\n\
 		.x-p-indent {text-indent: 1em; }\n\
+		.x-versemarker:before{content:\" (\";}\n\
+		.x-versemarker:after{content:\") \";}\n\
+		.x-chaptermarker:before{content:\" (\";}\n\
+		.x-chaptermarker:after{content:\") \";}\n\
+		.x-chaptermarker{fontsize:large;)\n\
 	";
 	// Acrostic for things like the titles in Psalm 119
 	return header;
@@ -490,6 +495,7 @@ bool OSISXHTML::handleToken(SWBuf &buf, const char *token, BasicFilterUserData *
 		else if ((!strcmp(tag.getName(), "milestone")) && (tag.getAttribute("type"))) {
 			// safe because we've verified type is present from if statement above
 			const char *type = tag.getAttribute("type");
+			
 			if (!strcmp(type, "line")) {
 				u->outputNewline(buf);
 				if (tag.getAttribute("subType") && !strcmp(tag.getAttribute("subType"), "x-PM")) {
@@ -518,8 +524,19 @@ bool OSISXHTML::handleToken(SWBuf &buf, const char *token, BasicFilterUserData *
 			else if (!strcmp(type, "x-importer")) {
 				//drop tag as not relevant
 			} 
-			
-			
+			else if (!strcmp(type, "x-versemarker")) {
+				SWBuf attVal = tag.getAttribute("type");
+				SWBuf vID = tag.getAttribute("osisID");
+				SWBuf vNum = tag.getAttribute("vnum");
+				SWBuf cNum = tag.getAttribute("cnum");
+				
+				if (!strcmp(vNum, "1")) {
+					outText(SWBuf("<br/><span class=\"x-chaptermarker\" osisID=\"") + vID, buf, u);
+					outText(SWBuf("\">") + cNum + "</span>", buf, u);
+				}
+				outText(SWBuf("<span class=\"") + attVal + "\" osisID=\"" + vID, buf,u);
+				outText(SWBuf("\">") + vNum + "</span>", buf,u);
+			} 
 			else {
 				SWBuf attVal = tag.getAttribute("type");
 				outText(SWBuf("<span class=\"") + attVal + "\"", buf,u);
@@ -528,7 +545,7 @@ bool OSISXHTML::handleToken(SWBuf &buf, const char *token, BasicFilterUserData *
 					attVal = tag.getAttribute(*it);
 					outText(SWBuf(" data-") + *it + "=\"" + attVal + "\"", buf,u);
 				}
-				outText(SWBuf("></span>"), buf,u);
+				outText("></span>", buf,u);
 				
 			}
 		}

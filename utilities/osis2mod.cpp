@@ -103,6 +103,7 @@ int converted  = 0;
 
 SWText *module = 0;
 VerseKey currentVerse;
+VerseKey storedVerse;
 SWBuf v11n     = "KJV";
 char activeOsisID[255];
 char currentOsisID[255];
@@ -390,7 +391,7 @@ bool isValidRef(const char *buf, const char *caller) {
 	after.setVersificationSystem(currentVerse.getVersificationSystem());
 	after.setAutoNormalize(true);
 	after.setText(buf);
-
+	
 	if (before == after)
 	{
 		return true;
@@ -510,7 +511,9 @@ void writeEntry(SWBuf &text, bool force = false) {
 
 	// If we have seen a verse and the supplied one is different then we output the collected one.
 	if (*activeOsisID && strcmp(activeOsisID, keyOsisID)) {
-
+	
+		SWBuf vnum = SWBuf(std::to_string(lastKey.getVerse()).c_str());		
+		SWBuf cnum = SWBuf(std::to_string(lastKey.getChapter()).c_str());		
 		if (!isValidRef(lastKey, "writeEntry")) {
 			makeValidRef(lastKey);
 		}
@@ -521,6 +524,7 @@ void writeEntry(SWBuf &text, bool force = false) {
 
 		// Put the revision into the module
 		int testmt = currentVerse.getTestament();
+		
 		if ((testmt == 1 && firstOT) || (testmt == 2 && firstNT)) {
 			VerseKey t;
 			t.setVersificationSystem(currentVerse.getVersificationSystem());
@@ -560,7 +564,8 @@ void writeEntry(SWBuf &text, bool force = false) {
 				outputDecoder->processText(activeVerseText, (SWKey *)2);
 				outputDecoder->processText(currentText, (SWKey *)2);
 			}
-			activeVerseText = currentText + " " + activeVerseText;
+			activeVerseText = currentText + "<milestone type=\"x-versemarker\" osisID=\"" + activeOsisID 
+					+ "\" cnum=\"" + cnum + "\" vnum=\"" + vnum + "\"/>" + activeVerseText;
 			if (outputEncoder) {
 				outputEncoder->processText(activeVerseText, (SWKey *)2);
 			}
