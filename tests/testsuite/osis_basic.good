@@ -35,6 +35,8 @@ CSS:
 		.inscription {font-variant: small-caps; }
 		.catchWord {font-style: bold; }
 		.x-p-indent {text-indent: 1em; }
+		.x-versemarker:before {color:blue; content:"("attr(vnum)")"; }
+                .x-chaptermarker:before {color:blue; font-size:large; content:"("attr(cnum)")"; }
 	
 -------
 RenderText:
@@ -77,6 +79,8 @@ CSS:
 		.inscription {font-variant: small-caps; }
 		.catchWord {font-style: bold; }
 		.x-p-indent {text-indent: 1em; }
+		.x-versemarker:before {color:blue; content:"("attr(vnum)")"; }
+                .x-chaptermarker:before {color:blue; font-size:large; content:"("attr(cnum)")"; }
 	
 -------
 RenderText:
@@ -126,6 +130,8 @@ CSS:
 		.inscription {font-variant: small-caps; }
 		.catchWord {font-style: bold; }
 		.x-p-indent {text-indent: 1em; }
+		.x-versemarker:before {color:blue; content:"("attr(vnum)")"; }
+                .x-chaptermarker:before {color:blue; font-size:large; content:"("attr(cnum)")"; }
 	
 -------
 RenderText:

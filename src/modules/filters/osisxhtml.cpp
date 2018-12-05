@@ -57,12 +57,9 @@ const char *OSISXHTML::getHeader() const {
 		.inscription {font-variant: small-caps; }\n\
 		.catchWord {font-style: bold; }\n\
 		.x-p-indent {text-indent: 1em; }\n\
-		.x-versemarker:before{content:\" (\";}\n\
-		.x-versemarker:after{content:\") \";}\n\
-		.x-chaptermarker:before{content:\" (\";}\n\
-		.x-chaptermarker:after{content:\") \";}\n\
-		.x-chaptermarker{fontsize:large;)\n\
-	";
+		.x-versemarker:before {color:blue; content:\"(\"attr(vnum)\")\"; }\n\
+                .x-chaptermarker:before {color:blue; font-size:large; content:\"(\"attr(cnum)\")\"; }\n\
+		";
 	// Acrostic for things like the titles in Psalm 119
 	return header;
 }
@@ -532,10 +529,10 @@ bool OSISXHTML::handleToken(SWBuf &buf, const char *token, BasicFilterUserData *
 				
 				if (!strcmp(vNum, "1")) {
 					outText(SWBuf("<br/><span class=\"x-chaptermarker\" osisID=\"") + vID, buf, u);
-					outText(SWBuf("\">") + cNum + "</span>", buf, u);
+					outText(SWBuf("\" cnum=\"") + cNum + "\"/>",buf,u); 
 				}
 				outText(SWBuf("<span class=\"") + attVal + "\" osisID=\"" + vID, buf,u);
-				outText(SWBuf("\">") + vNum + "</span>", buf,u);
+				outText(SWBuf("\" vnum=\"") + vNum + "\"/>",buf,u); 
 			} 
 			else {
 				SWBuf attVal = tag.getAttribute("type");
